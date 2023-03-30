@@ -1,5 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
-import {add_selected_analysis, del_selected_analysis} from "../reducers/analysis";
+import {add_selected_analysis, del_selected_analysis, set_selected_analysis} from "../reducers/analysis";
+import {useEffect} from "react";
+import {messageService} from "../services/_services";
 
 const Analysis = () => {
   const dispatch = useDispatch();
@@ -25,6 +27,20 @@ const Analysis = () => {
       title: "Давление насыщенных паров"
     },
   ]
+
+  useEffect(() => {
+    const subscription = messageService.onMessage().subscribe(message => {
+      if (message) {
+        dispatch(set_selected_analysis([]))
+        console.log(message)
+      }
+    });
+    function unsubscribe () {
+      subscription.unsubscribe()
+    }
+      return unsubscribe;
+  }, []);
+
   return (
     <div style={{display: "flex", gap: 20}}>
       {analysis.map(analysis => (

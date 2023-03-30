@@ -1,11 +1,18 @@
 import {useDispatch, useSelector} from "react-redux";
 import {set_selected_category} from "../reducers/categories";
+import {messageService} from "../services/_services";
 
 const Categories = () => {
   const dispatch = useDispatch();
   const selected_category = useSelector((state) => state.categories.selected_category);
+
+  function sendMessage() {
+    messageService.sendMessage('change category');
+  }
+
   const change_category = (e) => {
     dispatch(set_selected_category(Number(e.target.value)));
+    sendMessage();
   }
   return (
     <div style={{marginBottom: 30}}>
