@@ -1,9 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {createWrapper} from "next-redux-wrapper";
-import {auth} from "./auth";
+import {categories} from "./categories";
+import {analysis} from "./analysis";
 
 const rootReducer = combineReducers({
-  auth,
+  categories,
+  analysis
 });
 
 const initStore = () =>

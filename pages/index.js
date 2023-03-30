@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import Categories from "../components/categories";
+import Analysis from "../components/analysis";
 
 export default function Home() {
   return (
@@ -11,7 +13,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-
+        <Categories />
+        <Analysis />
       </main>
 
       <footer className={styles.footer}>
